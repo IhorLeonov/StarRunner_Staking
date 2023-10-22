@@ -20,10 +20,10 @@ export const Withdraw = () => {
     setPayload,
     stakedBalance,
     rewards,
-    isWalletConnect,
+    // isWalletConnect,
   } = useAppContext();
 
-  const formattedStakedBalance = isWalletConnect
+  const formattedStakedBalance = stakedBalance // isWalletConnect
     ? toFixedDigits(Number(formatEther(stakedBalance)))
     : 0;
 

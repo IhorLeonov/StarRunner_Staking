@@ -10,13 +10,17 @@ import { formatEther } from "viem";
 import { toFixedDigits } from "../../helpers/mathHelpers";
 
 export const ClaimRewards = () => {
-  const { setPayload, setIsLoadingTransaction, rewards, isWalletConnect } =
-    useAppContext();
+  const {
+    setPayload,
+    setIsLoadingTransaction,
+    rewards,
+    //  isWalletConnect
+  } = useAppContext();
 
   const { writeClaim, dataClaim, claimIsLoading } = useClaimRewards();
   const { claimLoading } = useWaitClaimRewards(dataClaim);
 
-  const formattedRewards = isWalletConnect
+  const formattedRewards = rewards // isWalletConnect
     ? toFixedDigits(Number(formatEther(rewards)))
     : 0;
 
