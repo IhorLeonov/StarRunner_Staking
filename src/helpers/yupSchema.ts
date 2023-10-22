@@ -1,11 +1,13 @@
 import * as Yup from "yup";
 
-export const yupSchema = (balance) => {
+export const yupSchema = (balance: string) => {
   const schema = Yup.object().shape({
     amount: Yup.string()
-      .test("Digits only", "The field should have digits only", (value) =>
-        /\d/.test(value)
-      )
+      .test("Digits only", "The field should have digits only", (value) => {
+        if (value) {
+          return /\d/.test(value);
+        }
+      })
       .test(
         "Min value",
         `Min value 0.000000000000000001 STRU`,
@@ -14,7 +16,7 @@ export const yupSchema = (balance) => {
       .test(
         "Max value",
         `Max value ${balance} STRU`,
-        (value) => Number(value) <= balance
+        (value) => Number(value) <= Number(balance)
       )
       .required("Please complete this field"),
   });

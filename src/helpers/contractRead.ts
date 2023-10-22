@@ -5,7 +5,7 @@ import { useContractRead } from "wagmi";
 const { VITE_STAKE_ADDRESS, VITE_STRU_ADDRESS } = import.meta.env;
 
 // reading STRU token balance, takes user address in args
-export const useGetSTRUBalance = (address) => {
+export const useGetSTRUBalance = (address: string) => {
   const { data } = useContractRead({
     address: VITE_STRU_ADDRESS,
     abi: struABI,
@@ -18,7 +18,7 @@ export const useGetSTRUBalance = (address) => {
 };
 
 // reading staked balance, takes user address in args
-export const useGetStakedBalance = (address) => {
+export const useGetStakedBalance = (address: string) => {
   const { data } = useContractRead({
     address: VITE_STAKE_ADDRESS,
     abi: stakeABI,
@@ -60,7 +60,7 @@ export const useGetTimeStampOfTheEnd = () => {
 };
 
 // reading awailable amount rewards for user, takes user address in args
-export const useGetUserRewards = (address) => {
+export const useGetUserRewards = (address: string) => {
   const { data } = useContractRead({
     address: VITE_STAKE_ADDRESS,
     abi: stakeABI,
@@ -92,7 +92,7 @@ export const useGetTotalSupply = () => {
 };
 
 // checking allowance before staking, gets owner and spender address in args
-export const useCheckAllowance = (userAddress) => {
+export const useCheckAllowance = (userAddress: string) => {
   const { data } = useContractRead({
     address: VITE_STRU_ADDRESS,
     abi: struABI,

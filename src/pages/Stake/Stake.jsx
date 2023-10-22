@@ -45,7 +45,7 @@ export const Stake = () => {
   const { writeApprove, apprWriteLoading, apprData } = useApproveStaking();
   const { writeStake, stakeWriteLoading, stakeData } = useStakeToken();
 
-  const { apprLoading } = useWaitForApprove(apprData, writeStake, payload);
+  const { apprLoading } = useWaitForApprove(apprData, writeStake, payload); // data - ContractWriteData, writeStake - WriteStakeFunc, payload - number
   const { stakeLoading } = useWaitForStake(stakeData);
 
   const totalRate = useMemo(() => {
@@ -59,7 +59,7 @@ export const Stake = () => {
 
   const handleSubmit = (amount) => {
     const payload = parseEther(amount);
-    setPayload(payload);
+    setPayload(payload); // bigint
 
     if (allowance < payload) {
       writeApprove({ args: [VITE_STAKE_ADDRESS, payload] });

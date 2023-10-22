@@ -25,10 +25,4 @@ const config = createConfig({
   webSocketPublicClient,
 });
 
-const rainbowKitTheme = {
-  accentColor: "#204ffe",
-  borderRadius: "medium",
-  overlayBlur: "small",
-};
-
-export { config, chains, rainbowKitTheme };
+export { config, chains };
