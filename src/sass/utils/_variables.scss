@@ -1,0 +1,36 @@
+// breakpoints:
+$mobile: 375px;
+$mob-tab: 550px;
+$tablet: 744px;
+$desktop: 1440px;
+$max-mobile: 743px;
+$max-tablet: 1439px;
+
+:root {
+  // colors
+  --color-background: #080808;
+  --color-hero-bg: #10147e;
+  --color-text-main: #ffffff;
+  --color-text-desc: #b3b3b3;
+  --color-button-default: #272a2e;
+  --color-icons-default: #ffffff;
+  --color-border-default: #ffffff;
+  --color-accent: #204ffe;
+  --color-warning: #eb3795;
+  --color-success: #20fe51;
+  --color-error: #fe2d20;
+  --color-loader-border: #272a2e;
+
+  // fonts
+  --font-family--kanit-regular: "Kanit Regular", sans-serif;
+  --font-family--kanit-medium: "Kanit Medium", sans-serif;
+  --font-family--roboto-mono: "Roboto Mono", monospace;
+  --font-family--roboto-mono-bold: "Roboto Mono Bold", monospace;
+  --font-family--swiss-medium: "Swiss Medium", sans-serif;
+  --font-family--swiss: "Swiss", sans-serif;
+  --font-size--body-web: 16px;
+  --font-size--body-tab: 16px;
+  --font-size--body-mob: 14px;
+
+  --main-transition: all 0.2s ease-in-out;
+}

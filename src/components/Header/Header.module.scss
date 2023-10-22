@@ -1,0 +1,78 @@
+@import "../../sass/utils/mixins";
+@import "../../sass/utils/variables";
+
+.header {
+  width: 100%;
+  z-index: 10;
+
+  &_container {
+    @include container;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3px;
+    height: 43px;
+
+    @media screen and (min-width: $tablet) {
+      padding-top: 0;
+      height: 70px;
+      line-height: 1.14;
+    }
+
+    @media screen and (min-width: $desktop) {
+      padding-left: 0;
+      padding-right: 0;
+      max-width: 100%;
+      padding-left: calc((100vw - 1360px) / 2);
+      padding-right: calc((100vw - 1360px) / 2);
+    }
+  }
+}
+
+.wallet_info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: var(--font-family--kanit-medium);
+  font-size: 12px;
+  letter-spacing: 0.12px;
+  text-transform: uppercase;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+.wallet_adress {
+  @media screen and (max-width: $max-mobile) {
+    display: none;
+  }
+}
+
+.eth_logo {
+  margin-left: 4px;
+  @media screen and (min-width: $tablet) {
+    margin-left: 8px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.stru_logo {
+  border-radius: 50%;
+  @media screen and (max-width: $max-mobile) {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.connect_btn_box {
+  width: 170px;
+
+  @media screen and (min-width: $tablet) {
+    width: 233px;
+  }
+}

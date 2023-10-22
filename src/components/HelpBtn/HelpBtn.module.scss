@@ -1,0 +1,17 @@
+@import "../../sass/utils/variables";
+
+.help_btn {
+  cursor: pointer;
+  @media screen and (min-width: $desktop) {
+    position: relative;
+    order: 1;
+  }
+}
+
+.question_icon {
+  width: 14px;
+
+  @media screen and (min-width: $tablet) {
+    width: 18px;
+  }
+}

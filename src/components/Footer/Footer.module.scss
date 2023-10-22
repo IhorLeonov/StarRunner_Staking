@@ -1,0 +1,40 @@
+@import "../../sass/utils/mixins";
+@import "../../sass/utils/variables";
+
+.footer {
+  border-top: 1px solid var(--color-accent);
+  color: var(--color-text-desc);
+  background-color: var(--color-background);
+
+  &_container {
+    @include container;
+
+    display: flex;
+    justify-content: space-between;
+    padding-top: 8px;
+
+    height: 40px;
+
+    @media screen and (min-width: $tablet) {
+      align-items: center;
+      height: 50px;
+      padding-top: 0;
+    }
+
+    @media screen and (min-width: $desktop) {
+      height: 58px;
+      padding-top: 16px;
+      padding-bottom: 24px;
+    }
+  }
+
+  p {
+    font-size: 11px;
+    letter-spacing: -0.22px;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 14px;
+      letter-spacing: -0.28px;
+    }
+  }
+}

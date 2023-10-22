@@ -1,0 +1,56 @@
+@import "../../sass/utils/variables";
+
+.form {
+  width: 100%;
+  margin-top: 24px;
+
+  @media screen and (min-width: $tablet) {
+    width: 391px;
+  }
+
+  &_input {
+    padding: 8px 0;
+    border-bottom: 1px solid #ffffff;
+    transition: var(--main-transition);
+
+    &:hover,
+    &:focus {
+      border-color: var(--color-accent);
+    }
+  }
+
+  &_error_box {
+    padding-top: 2px;
+    height: 20px;
+  }
+
+  &_error {
+    font-size: 13px;
+    line-height: 1.8;
+    letter-spacing: 0.26px;
+    color: var(--color-warning);
+  }
+
+  &_available {
+    margin-top: 12px;
+    padding-top: 2px;
+    color: var(--color-text-desc);
+
+    @media screen and (min-width: $tablet) {
+      margin-top: 16px;
+    }
+
+    :last-child {
+      color: var(--color-text-main);
+    }
+  }
+
+  &_available_value {
+    font-family: var(--font-family--roboto-mono-bold);
+    color: var(--color-text-main);
+  }
+}
+
+.input_warning {
+  border-color: var(--color-warning) !important;
+}

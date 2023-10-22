@@ -1,0 +1,61 @@
+@import "../utils/mixins";
+@import "../utils/variables";
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  color: var(--color-text-main);
+
+  font-family: var(--font-family--roboto-mono);
+  font-size: var(--font-size--body-mob);
+  letter-spacing: -0.28px;
+
+  background: radial-gradient(
+    650px,
+    var(--color-accent) 20%,
+    var(--color-background) 80%
+  );
+
+  @media screen and (min-width: $tablet) {
+    font-size: var(--font-size--body-tab);
+    letter-spacing: -0.32px;
+
+    background: radial-gradient(
+      900px,
+      var(--color-accent) 20%,
+      var(--color-background) 80%
+    );
+  }
+
+  @media screen and (min-width: $desktop) {
+    background: radial-gradient(
+      1150px,
+      var(--color-accent) 20%,
+      var(--color-background) 80%
+    );
+  }
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+input {
+  color: inherit;
+}

@@ -1,0 +1,71 @@
+@import "../../sass/utils/variables";
+
+.prompt {
+  position: absolute;
+
+  top: 0;
+  z-index: 10;
+
+  color: black;
+  font-size: 14px;
+  line-height: 1.14;
+  background-color: #ffffff;
+
+  @media screen and (max-width: $max-tablet) {
+    left: 0;
+    padding: 24px 16px 0px 16px;
+    width: 100vw;
+    height: 275px;
+
+    font-family: var(--font-family--roboto-mono);
+    border-radius: 8px 8px 0px 0px;
+    transform: translateY(calc(100vh + 275px + 8px));
+
+    &_title {
+      margin-bottom: 16px;
+
+      text-align: center;
+      font-size: 16px;
+      font-family: var(--font-family--roboto-mono-bold);
+      text-transform: uppercase;
+
+      &::before {
+        content: "";
+        position: absolute;
+        border-radius: 2.5px;
+        background-color: #b3b3b3;
+
+        width: 36px;
+        height: 5px;
+        left: calc(50% - 17px);
+        top: 8px;
+      }
+    }
+  }
+
+  @media screen and (min-width: $desktop) {
+    top: -56px;
+    padding: 8px 12px;
+    font-family: Inter;
+
+    transform: scale(0);
+
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: inherit;
+
+      width: 10px;
+      height: 10px;
+      left: 50%;
+      bottom: -5px;
+      transform: rotate(45deg);
+    }
+
+    &_title {
+      display: none;
+    }
+  }
+}
+
+// классы под разные сообщения находятся в sass/base/common

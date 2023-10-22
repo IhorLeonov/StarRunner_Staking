@@ -1,0 +1,51 @@
+$roboto-path: "/fonts/Roboto_Mono";
+$kanit-path: "/fonts/Kanit";
+$swiss-path: "/fonts/Swiss";
+
+@font-face {
+  src: url($roboto-path + "/RobotoMono-Regular.ttf") format("truetype");
+
+  font-family: "Roboto Mono";
+  font-weight: 400;
+  font-display: fallback;
+}
+
+@font-face {
+  src: url($roboto-path + "/RobotoMono-Bold.ttf") format("truetype");
+
+  font-family: "Roboto Mono Bold";
+  font-weight: 700;
+  font-display: fallback;
+}
+
+@font-face {
+  src: url($kanit-path + "/Kanit-Regular.ttf") format("truetype");
+
+  font-family: "Kanit Regular";
+  font-weight: 400;
+  font-display: fallback;
+}
+
+@font-face {
+  src: url($kanit-path + "/Kanit-Medium.ttf") format("truetype");
+
+  font-family: "Kanit Medium";
+  font-weight: 500;
+  font-display: fallback;
+}
+
+@font-face {
+  src: url($swiss-path + "/Swiss-721-Medium-BT.ttf") format("truetype");
+
+  font-family: "Swiss Medium";
+  font-weight: 400;
+  font-display: fallback;
+}
+
+@font-face {
+  src: url($swiss-path + "/Swiss-721-BT-Font.ttf") format("truetype");
+
+  font-family: "Swiss";
+  font-weight: 400;
+  font-display: fallback;
+}

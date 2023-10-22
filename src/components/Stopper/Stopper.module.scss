@@ -1,0 +1,57 @@
+@import "../../sass/utils/variables";
+
+.stopper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 149px;
+
+  @media screen and (min-width: $mob-tab) {
+    margin-top: 0;
+    justify-content: center;
+  }
+
+  &_img_box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96px;
+    height: 96px;
+
+    border-radius: 50%;
+    background-color: #080b27;
+  }
+
+  &_cross_img {
+    position: absolute;
+    right: 16px;
+    bottom: 20px;
+  }
+
+  &_desc {
+    margin-top: 16px;
+    text-align: center;
+    line-height: normal;
+    color: var(--color-text-desc);
+
+    @media screen and (max-width: $mob-tab) {
+      width: 220px;
+    }
+  }
+
+  &_button_box {
+    margin-top: auto;
+    width: 100%;
+
+    @media screen and (min-width: $mob-tab) {
+      margin-top: 32px;
+      width: 170px;
+    }
+
+    @media screen and (min-width: $tablet) {
+      width: 233px;
+    }
+  }
+}

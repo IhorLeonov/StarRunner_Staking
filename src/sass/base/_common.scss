@@ -1,0 +1,58 @@
+@import "../utils/variables";
+@import "../utils/keyframes";
+
+.svg {
+  fill: #ffffff;
+  transition: fill 0.2s ease-in-out;
+}
+
+.active_tab {
+  border-color: var(--color-accent) !important;
+  color: var(--color-text-main);
+}
+
+.balance_prompt {
+  // display: block;
+  @media screen and (max-width: $max-tablet) {
+    animation: move 300ms linear;
+    animation-fill-mode: forwards;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 165px;
+    left: -78px;
+
+    animation: expand-bounce 300ms;
+    animation-fill-mode: forwards;
+  }
+}
+
+.apr_prompt {
+  // display: block;
+  @media screen and (max-width: $max-tablet) {
+    animation: move 300ms linear;
+    animation-fill-mode: forwards;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 360px;
+    left: -176px;
+
+    animation: expand-bounce 300ms;
+    animation-fill-mode: forwards;
+  }
+}
+.rewards_prompt {
+  // display: block;
+
+  @media screen and (max-width: $max-tablet) {
+    animation: move 300ms linear;
+    animation-fill-mode: forwards;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 176px;
+    text-align: center;
+    left: -84px;
+    animation: expand-bounce 300ms;
+    animation-fill-mode: forwards;
+  }
+}

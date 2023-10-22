@@ -1,0 +1,61 @@
+@import "../../sass/utils/variables";
+
+.nav_bar_container {
+  width: 100vw;
+  z-index: 10;
+  background-color: var(--color-background);
+
+  @media screen and (max-width: $max-mobile) {
+    border-radius: 16px 16px 0 0;
+  }
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 40px;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding-left: calc((100vw - 1200px) / 2);
+    padding-right: calc((100vw - 1200px) / 2);
+  }
+}
+
+.nav_bar {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 100%;
+  color: var(--color-text-desc);
+  border-bottom: 1px solid var(--color-accent);
+
+  @media screen and (max-width: $max-mobile) {
+    padding-top: 16px; //
+    padding-left: 24px;
+    padding-right: 24px;
+
+    @media screen and (max-width: $mob-tab) {
+      justify-content: space-between;
+    }
+    justify-content: space-around;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-bottom: 5px solid transparent;
+    transition: var(--main-transition);
+
+    @media screen and (min-width: $tablet) {
+      font-size: 16px;
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    &:hover {
+      color: var(--color-text-main);
+    }
+  }
+}
