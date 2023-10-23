@@ -1,15 +1,16 @@
 import s from "./DisconnectBtn.module.scss";
-import { useAppContext } from "../../context/context";
+// import { useAppContext } from "../../context/context";
 import { Icon } from "../SelectIcons/SelectIcons";
 import { useDisconnect } from "wagmi";
+import { FC } from "react";
 
-export const DisconnectBtn = () => {
-  const { setIsWalletConnect } = useAppContext();
+export const DisconnectBtn: FC = () => {
+  // const { setIsWalletConnect } = useAppContext();
   const { disconnect } = useDisconnect();
 
   const handleDisconnect = () => {
     disconnect();
-    setIsWalletConnect(false);
+    // setIsWalletConnect(false);
   };
 
   return (

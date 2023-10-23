@@ -1,3 +1,4 @@
+import { FC } from "react";
 import s from "./Prompt.module.scss";
 
 const balanceString = "Staking rewards get allocated on this sum";
@@ -6,14 +7,19 @@ const aprSecondString =
   "Interest rate is calculated for each amount of tokens.";
 const rewardsString = "Rewards get allocated every second";
 
-export const Prompt = ({ name, promptClass }) => {
+interface PromptProps {
+  promptName: string | null;
+  promptClass: string | null;
+}
+
+export const Prompt: FC<PromptProps> = ({ promptName, promptClass }) => {
   return (
     <div className={s.prompt + " " + promptClass}>
-      <h3 className={s.prompt_title}>{name}</h3>
+      <h3 className={s.prompt_title}>{promptName}</h3>
       <p>
         <span>
           {(() => {
-            switch (name) {
+            switch (promptName) {
               case "balance":
                 return balanceString;
               case "apr":
@@ -28,7 +34,7 @@ export const Prompt = ({ name, promptClass }) => {
         <br />
         <span>
           {(() => {
-            switch (name) {
+            switch (promptName) {
               case "apr":
                 return aprSecondString;
               default:

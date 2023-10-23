@@ -1,7 +1,8 @@
+import { FC } from "react";
 import s from "./ConnectionBtn.module.scss";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 
-export const ConnectionBtn = () => {
+export const ConnectionBtn: FC = () => {
   const { openConnectModal } = useConnectModal();
 
   return (

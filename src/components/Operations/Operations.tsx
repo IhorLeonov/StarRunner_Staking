@@ -1,12 +1,12 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { Suspense } from "react";
+import { FC, Suspense } from "react";
 import s from "./Operations.module.scss";
 import { useEffect } from "react";
 import { useAccount } from "wagmi";
 import { Notification } from "../Notification/Notification";
 import { Stopper } from "../Stopper/Stopper";
 
-export const Operations = () => {
+export const Operations: FC = () => {
   const navigate = useNavigate();
   const { isConnected } = useAccount();
 

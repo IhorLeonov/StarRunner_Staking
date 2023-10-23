@@ -1,13 +1,21 @@
 import s from "./HelpBtn.module.scss";
 import { Prompt } from "../Prompt/Prompt";
-import { useState } from "react";
+import { FC, useState } from "react";
 
-export const HelpBtn = ({
+interface HelpBtnProps {
+  name: string;
+  promptName: string | null;
+  promptClass: string | null;
+  handleShowPrompt: (name: string) => void;
+  handleHidePrompt: () => void;
+}
+
+export const HelpBtn: FC<HelpBtnProps> = ({
   name,
-  handleShowPrompt,
-  handleHidePrompt,
   promptName,
   promptClass,
+  handleShowPrompt,
+  handleHidePrompt,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -22,8 +30,11 @@ export const HelpBtn = ({
     }
   };
 
+  // console.log(name, "name");
+  // console.log(promptName, "promptName");
+
   return (
-    <div
+    <button
       type="button"
       className={s.help_btn}
       onMouseEnter={() => handleShowPrompt(name)}
@@ -45,8 +56,8 @@ export const HelpBtn = ({
         />
       </svg>
       {promptName === name && (
-        <Prompt promptClass={promptClass} name={promptName} />
+        <Prompt promptClass={promptClass} promptName={promptName} />
       )}
-    </div>
+    </button>
   );
 };
