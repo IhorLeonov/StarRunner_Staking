@@ -6,8 +6,6 @@ const AppContext = createContext<AppContextProps | undefined>(undefined);
 export const useAppContext = () => useContext(AppContext);
 
 export const ContextProvider = ({ children }: ContextProps) => {
-  // const [isWalletConnect, setIsWalletConnect] = useState<boolean>(false);
-  // const [userAddress, setUserAddress] = useState<string>("");
   const [struBalance, setStruBalance] = useState<string>("");
   const [stakedBalance, setStakedBalance] = useState<bigint>(0n);
   const [rewards, setRewards] = useState<bigint>(0n);
@@ -20,10 +18,6 @@ export const ContextProvider = ({ children }: ContextProps) => {
   return (
     <AppContext.Provider
       value={{
-        // isWalletConnect,
-        // setIsWalletConnect,
-        // userAddress,
-        // setUserAddress,
         struBalance,
         setStruBalance,
         stakedBalance,

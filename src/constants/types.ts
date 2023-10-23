@@ -11,10 +11,6 @@ export interface ContextProps {
 }
 
 export interface AppContextProps {
-  // isWalletConnect: boolean;
-  // setIsWalletConnect: Dispatch<SetStateAction<boolean>>;
-  // userAddress: string;
-  // setUserAddress: Dispatch<SetStateAction<string>>;
   struBalance: string;
   setStruBalance: Dispatch<SetStateAction<string>>;
   stakedBalance: bigint;

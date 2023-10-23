@@ -5,7 +5,6 @@ import { yupSchema } from "../../helpers/yupSchema";
 import { useAppContext } from "../../context/context";
 import { parseEther } from "viem";
 
-
 // disable change input value on scroll
 document.addEventListener("wheel", function () {
   if (document.activeElement.type === "number") {
@@ -13,8 +12,8 @@ document.addEventListener("wheel", function () {
   }
 });
 
-
 export const TransactionsForm = ({ handleSubmit, balance }) => {
+  // console.log(typeof balance, "balance");
 
   const { setInputValue } = useAppContext();
   const { schema } = yupSchema(balance);

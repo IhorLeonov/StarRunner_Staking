@@ -13,30 +13,27 @@ import { toFixedDigits, formattAddress } from "../../helpers/mathHelpers";
 import { DisconnectBtn } from "../DisconnectBtn/DisconnectBtn";
 
 export const Header = () => {
-  const context = useAppContext(); // сначала создал обьект с контекстом,
-  const setStruBalance = context?.setStruBalance; // потом извлек из него свойста
-  const setIsWalletConnect = context?.setStruBalance; // и добавил проверку через "?"
-  // const { setStruBalance, setIsWalletConnect } = useAppContext(); // <-- вместо этого
+  const context = useAppContext();
+  const setStruBalance = context?.setStruBalance;
 
   const { isConnected, address } = useAccount();
   const { data: walletBalance } = useBalance({ address });
 
-  const struBalance = useGetSTRUBalance(String(address)); // конвертировал к стирнге
+  const struBalance = useGetSTRUBalance(String(address));
   const formattedWalletBalance = toFixedDigits(
     Number(walletBalance?.formatted)
   );
-  const formattedAddress = formattAddress(String(address)); // конвертировал к стирнге
+  const formattedAddress = formattAddress(String(address));
   const formattedStruBalance =
-    struBalance && typeof struBalance === "bigint" // добавил проверку на бигИнт
+    struBalance && typeof struBalance === "bigint"
       ? toFixedDigits(Number(formatEther(struBalance)))
       : "0";
 
   useEffect(() => {
-    if (isConnected && setStruBalance && setIsWalletConnect) {
+    if (isConnected && setStruBalance) {
       setStruBalance(formattedStruBalance);
-      // setIsWalletConnect(true);
     }
-  }, [formattedStruBalance, setIsWalletConnect, setStruBalance, isConnected]);
+  }, [formattedStruBalance, setStruBalance, isConnected]);
 
   return (
     <header className={s.header}>

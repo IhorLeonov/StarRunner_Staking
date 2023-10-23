@@ -21,10 +21,9 @@ import {
 } from "../../helpers/contractRead";
 
 export const MainInfo = () => {
-  // const { setStakedBalance, setRewards } = useAppContext();
   const context = useAppContext();
-  const setStakedBalance = context?.setStruBalance;
-  const setRewards = context?.setStruBalance;
+  const setStakedBalance = context?.setStakedBalance;
+  const setRewards = context?.setRewards;
 
   const { promptName, promptClass, handleShowPrompt, handleHidePrompt } =
     usePrompt();
@@ -40,6 +39,7 @@ export const MainInfo = () => {
     stakedBalance && typeof stakedBalance === "bigint"
       ? toFixedDigits(Number(formatEther(stakedBalance)))
       : 0;
+
   const formattedUserRewards =
     userRewards && typeof userRewards === "bigint"
       ? toFixedDigits(Number(formatEther(userRewards)))
@@ -51,10 +51,9 @@ export const MainInfo = () => {
   const days = typeof timeStamp === "bigint" ? calcEndingTime(timeStamp) : 0;
 
   useEffect(() => {
-    if (stakedBalance && userRewards && setStakedBalance && setRewards) {
-      setStakedBalance(String(stakedBalance));
-      setRewards(String(userRewards));
-    }
+    if (setStakedBalance && typeof stakedBalance === "bigint")
+      setStakedBalance(BigInt(stakedBalance));
+    if (setRewards && typeof userRewards === "bigint") setRewards(userRewards);
   }, [stakedBalance, userRewards, setStakedBalance, setRewards]);
 
   return (
