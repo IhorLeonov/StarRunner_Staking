@@ -11,8 +11,8 @@ export const Notification = () => {
   const {
     status,
     setStatus,
-    isLoadingTransaction,
-    setIsLoadingTransaction,
+    transactionStatus,
+    setTransactionStatus,
     payload,
   } = useAppContext();
 
@@ -30,13 +30,13 @@ export const Notification = () => {
   // close notification if user change route
   useEffect(() => {
     setStatus("");
-    setIsLoadingTransaction("");
+    setTransactionStatus("");
   }, [location]);
 
   return (
     <div className={s.notify}>
       {/*  showing loader  */}
-      {isLoadingTransaction && !status && <div className={s.notify_loader} />}
+      {transactionStatus && !status && <div className={s.notify_loader} />}
       {/*  showing success img  */}
       {status.includes("success") && (
         <div className={s.notify_circle_success}>
@@ -51,32 +51,32 @@ export const Notification = () => {
       )}
       <p className={s.notify_desc}>
         {/* showing transaction in process messages */}
-        {isLoadingTransaction === "approve_loading" && (
+        {transactionStatus === "approve_loading" && (
           <>
             Approving{" "}
             <span className={s.notify_accent}>{tokenAmount} STRU </span>{" "}
             <span className={s.notify_string}>before Staking</span>
           </>
         )}
-        {isLoadingTransaction === "stake_loading" && !status && (
+        {transactionStatus === "stake_loading" && !status && (
           <>
             Adding <span className={s.notify_accent}>{tokenAmount}</span> STRU
             to Staking
           </>
         )}
-        {isLoadingTransaction === "withdraw_loading" && (
+        {transactionStatus === "withdraw_loading" && (
           <>
             Withdrawing <span className={s.notify_accent}>{tokenAmount}</span>{" "}
             STRU
           </>
         )}
-        {isLoadingTransaction === "exit_loading" && (
+        {transactionStatus === "exit_loading" && (
           <>
             Withdrawing <span className={s.notify_accent}>{tokenAmount}</span>{" "}
             STRU
           </>
         )}
-        {isLoadingTransaction === "claim_loading" && (
+        {transactionStatus === "claim_loading" && (
           <>
             Adding <span className={s.notify_accent}>{tokenAmount}</span> STRU
             to wallet

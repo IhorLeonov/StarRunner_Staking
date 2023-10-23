@@ -16,7 +16,7 @@ import { toFixedDigits } from "../../helpers/mathHelpers";
 
 export const Withdraw = () => {
   const {
-    setIsLoadingTransaction,
+    setTransactionStatus,
     setPayload,
     stakedBalance,
     rewards,
@@ -34,8 +34,8 @@ export const Withdraw = () => {
   const { takeAllLoading } = useWaitTakeAll(takeAllData);
 
   useEffect(() => {
-    if (withdrawLoading) setIsLoadingTransaction("withdraw_loading");
-    if (takeAllLoading) setIsLoadingTransaction("exit_loading");
+    if (withdrawLoading) setTransactionStatus("withdraw_loading");
+    if (takeAllLoading) setTransactionStatus("exit_loading");
   }, [withdrawLoading, takeAllLoading]);
 
   const handleSubmit = (amount) => {

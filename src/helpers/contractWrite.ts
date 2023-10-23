@@ -8,7 +8,9 @@ const { VITE_STAKE_ADDRESS, VITE_STRU_ADDRESS } = import.meta.env;
 
 // approving token amount before staking, gets stake address and token amount in args
 export const useApproveStaking = () => {
-  const { setStatus } = useAppContext();
+  const setStatus = useAppContext()?.setStatus;
+  // const { setStatus } = useAppContext();
+
   const {
     data: apprData,
     isLoading: apprWriteLoading,
@@ -19,7 +21,7 @@ export const useApproveStaking = () => {
     functionName: "approve",
 
     onError() {
-      setStatus("error");
+      if (setStatus) setStatus("error");
     },
   });
 
@@ -32,17 +34,24 @@ export const useWaitForApprove = (
   writeStake: WriteStakeFunc | undefined,
   amount: number
 ) => {
-  const { setStatus, setIsLoadingTransaction } = useAppContext();
+  const setStatus = useAppContext()?.setStatus;
+  const setTransactionStatus = useAppContext()?.setTransactionStatus;
+  // const { setStatus, setTransactionStatus } = useAppContext();
+
   const { isLoading: apprLoading } = useWaitForTransaction({
     hash: data?.hash,
     onSuccess() {
-      setIsLoadingTransaction("");
-      setStatus("success_approve");
-      if (writeStake) writeStake({ args: [amount] });
+      if (setTransactionStatus && setStatus && writeStake) {
+        setTransactionStatus("");
+        setStatus("success_approve");
+        writeStake({ args: [amount] });
+      }
     },
     onError() {
-      setIsLoadingTransaction("");
-      setStatus("error");
+      if (setTransactionStatus && setStatus) {
+        setTransactionStatus("");
+        setStatus("error");
+      }
     },
   });
 
@@ -51,7 +60,9 @@ export const useWaitForApprove = (
 
 // send STRU token to stake, pass amount of staked token in args
 export const useStakeToken = () => {
-  const { setStatus } = useAppContext();
+  const setStatus = useAppContext()?.setStatus;
+  // const { setStatus } = useAppContext();
+
   const {
     data: stakeData,
     isLoading: stakeWriteLoading,
@@ -62,7 +73,7 @@ export const useStakeToken = () => {
     functionName: "stake",
 
     onError() {
-      setStatus("error");
+      if (setStatus) setStatus("error");
     },
   });
   return { writeStake, stakeData, stakeWriteLoading };
@@ -70,17 +81,24 @@ export const useStakeToken = () => {
 
 // method for waitting useStakeToken transaction, gets in approve writing hash in props
 export const useWaitForStake = (data: ContractWriteData) => {
-  const { setStatus, setIsLoadingTransaction } = useAppContext();
+  const setStatus = useAppContext()?.setStatus;
+  const setTransactionStatus = useAppContext()?.setTransactionStatus;
+  // const { setStatus, setTransactionStatus } = useAppContext();
+
   const { isLoading: stakeLoading } = useWaitForTransaction({
     hash: data?.hash,
     onSuccess(data) {
-      setIsLoadingTransaction("");
-      setStatus("success_stake");
-      console.log("Successful stake", data);
+      if (setTransactionStatus && setStatus) {
+        setTransactionStatus("");
+        setStatus("success_stake");
+        console.log("Successful stake", data);
+      }
     },
     onError() {
-      setIsLoadingTransaction("");
-      setStatus("error");
+      if (setTransactionStatus && setStatus) {
+        setTransactionStatus("");
+        setStatus("error");
+      }
     },
   });
 
@@ -89,7 +107,9 @@ export const useWaitForStake = (data: ContractWriteData) => {
 
 // get STRU token from stake, pass desired amount of token in args
 export const useWithdraw = () => {
-  const { setStatus } = useAppContext();
+  const setStatus = useAppContext()?.setStatus;
+  // const { setStatus } = useAppContext();
+
   const {
     data: dataWithdraw,
     isLoading: withdrawIsLoading,
@@ -99,7 +119,7 @@ export const useWithdraw = () => {
     abi: stakeABI,
     functionName: "withdraw",
     onError() {
-      setStatus("error");
+      if (setStatus) setStatus("error");
     },
   });
   return { writeWithdraw, dataWithdraw, withdrawIsLoading };
@@ -107,17 +127,24 @@ export const useWithdraw = () => {
 
 // method for waitting useWithdraw transaction
 export const useWaitForWithdraw = (data: ContractWriteData) => {
-  const { setStatus, setIsLoadingTransaction } = useAppContext();
+  const setStatus = useAppContext()?.setStatus;
+  const setTransactionStatus = useAppContext()?.setTransactionStatus;
+  // const { setStatus, setTransactionStatus } = useAppContext();
+
   const { isLoading: withdrawLoading } = useWaitForTransaction({
     hash: data?.hash,
     onSuccess(data) {
-      setIsLoadingTransaction("");
-      setStatus("success_withdraw");
-      console.log("Successful withdraw", data);
+      if (setTransactionStatus && setStatus) {
+        setTransactionStatus("");
+        setStatus("success_withdraw");
+        console.log("Successful withdraw", data);
+      }
     },
     onError() {
-      setIsLoadingTransaction("");
-      setStatus("error");
+      if (setTransactionStatus && setStatus) {
+        setTransactionStatus("");
+        setStatus("error");
+      }
     },
   });
 
@@ -126,7 +153,9 @@ export const useWaitForWithdraw = (data: ContractWriteData) => {
 
 // get rewards from stake
 export const useClaimRewards = () => {
-  const { setStatus } = useAppContext();
+  const setStatus = useAppContext()?.setStatus;
+  // const { setStatus } = useAppContext();
+
   const {
     data: dataClaim,
     isLoading: claimIsLoading,
@@ -136,7 +165,7 @@ export const useClaimRewards = () => {
     abi: stakeABI,
     functionName: "claimReward",
     onError() {
-      setStatus("error");
+      if (setStatus) setStatus("error");
     },
   });
   return { writeClaim, dataClaim, claimIsLoading };
@@ -144,17 +173,24 @@ export const useClaimRewards = () => {
 
 // method for waitting useClaimRewards transaction
 export const useWaitClaimRewards = (data: ContractWriteData) => {
-  const { setStatus, setIsLoadingTransaction } = useAppContext();
+  const setStatus = useAppContext()?.setStatus;
+  const setTransactionStatus = useAppContext()?.setTransactionStatus;
+  // const { setStatus, setTransactionStatus } = useAppContext();
+
   const { isLoading: claimLoading } = useWaitForTransaction({
     hash: data?.hash,
     onSuccess(data) {
-      setIsLoadingTransaction("");
-      setStatus("success_claim");
-      console.log("Successful getting claim rewards", data);
+      if (setTransactionStatus && setStatus) {
+        setTransactionStatus("");
+        setStatus("success_claim");
+        console.log("Successful getting claim rewards", data);
+      }
     },
     onError() {
-      setIsLoadingTransaction("");
-      setStatus("error");
+      if (setTransactionStatus && setStatus) {
+        setTransactionStatus("");
+        setStatus("error");
+      }
     },
   });
 
@@ -163,7 +199,9 @@ export const useWaitClaimRewards = (data: ContractWriteData) => {
 
 // take all (staked balance + rewards) from stake
 export const useTakeAll = () => {
-  const { setStatus } = useAppContext();
+  const setStatus = useAppContext()?.setStatus;
+  // const { setStatus } = useAppContext();
+
   const {
     data: takeAllData,
     isLoading: takeAllIsLoading,
@@ -173,7 +211,7 @@ export const useTakeAll = () => {
     abi: stakeABI,
     functionName: "exit",
     onError() {
-      setStatus("error");
+      if (setStatus) setStatus("error");
     },
   });
   return { takeAllWrite, takeAllData, takeAllIsLoading };
@@ -181,17 +219,24 @@ export const useTakeAll = () => {
 
 // method for waitting useTakeAll transaction
 export const useWaitTakeAll = (data: ContractWriteData) => {
-  const { setStatus, setIsLoadingTransaction } = useAppContext();
+  const setStatus = useAppContext()?.setStatus;
+  const setTransactionStatus = useAppContext()?.setTransactionStatus;
+  // const { setStatus, setTransactionStatus } = useAppContext();
+
   const { isLoading: takeAllLoading } = useWaitForTransaction({
     hash: data?.hash,
     onSuccess(data) {
-      setIsLoadingTransaction("");
-      setStatus("success_exit");
-      console.log("Successful getting all staked balance", data);
+      if (setTransactionStatus && setStatus) {
+        setTransactionStatus("");
+        setStatus("success_exit");
+        console.log("Successful getting all staked balance", data);
+      }
     },
     onError() {
-      setIsLoadingTransaction("");
-      setStatus("error");
+      if (setTransactionStatus && setStatus) {
+        setTransactionStatus("");
+        setStatus("error");
+      }
     },
   });
   return { takeAllLoading };

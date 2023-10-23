@@ -13,7 +13,7 @@ export const ContextProvider = ({ children }: ContextProps) => {
   const [rewards, setRewards] = useState<bigint>(0n);
 
   const [status, setStatus] = useState<string>("");
-  const [isLoadingTransaction, setIsLoadingTransaction] = useState<string>("");
+  const [transactionStatus, setTransactionStatus] = useState<string>("");
   const [inputValue, setInputValue] = useState<string>("");
   const [payload, setPayload] = useState<bigint>(0n);
 
@@ -33,8 +33,8 @@ export const ContextProvider = ({ children }: ContextProps) => {
 
         status,
         setStatus,
-        isLoadingTransaction,
-        setIsLoadingTransaction,
+        transactionStatus,
+        setTransactionStatus,
         inputValue,
         setInputValue,
         payload,

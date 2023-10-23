@@ -12,7 +12,7 @@ import { toFixedDigits } from "../../helpers/mathHelpers";
 export const ClaimRewards = () => {
   const {
     setPayload,
-    setIsLoadingTransaction,
+    setTransactionStatus,
     rewards,
     //  isWalletConnect
   } = useAppContext();
@@ -25,7 +25,7 @@ export const ClaimRewards = () => {
     : 0;
 
   useEffect(() => {
-    if (claimLoading) setIsLoadingTransaction("claim_loading");
+    if (claimLoading) setTransactionStatus("claim_loading");
   }, [claimLoading]);
 
   const handleClick = () => {

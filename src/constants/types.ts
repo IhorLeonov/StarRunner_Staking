@@ -23,8 +23,8 @@ export interface AppContextProps {
   setRewards: Dispatch<SetStateAction<bigint>>;
   status: string;
   setStatus: Dispatch<SetStateAction<string>>;
-  isLoadingTransaction: string;
-  setIsLoadingTransaction: Dispatch<SetStateAction<string>>;
+  transactionStatus: string;
+  setTransactionStatus: Dispatch<SetStateAction<string>>;
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
   payload: bigint;

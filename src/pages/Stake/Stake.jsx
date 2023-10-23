@@ -27,7 +27,7 @@ export const Stake = () => {
   const {
     struBalance,
     stakedBalance,
-    setIsLoadingTransaction,
+    setTransactionStatus,
     payload,
     setPayload,
     inputValue,
@@ -53,8 +53,8 @@ export const Stake = () => {
   }, [stakedBalance, totalAvailble, totalSupply, inputValue]);
 
   useEffect(() => {
-    if (apprLoading) setIsLoadingTransaction("approve_loading");
-    if (stakeLoading) setIsLoadingTransaction("stake_loading");
+    if (apprLoading) setTransactionStatus("approve_loading");
+    if (stakeLoading) setTransactionStatus("stake_loading");
   }, [apprLoading, stakeLoading]);
 
   const handleSubmit = (amount) => {
