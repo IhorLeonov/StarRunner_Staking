@@ -21,7 +21,11 @@ import {
 } from "../../helpers/contractRead";
 
 export const MainInfo = () => {
-  const { setStakedBalance, setRewards } = useAppContext();
+  // const { setStakedBalance, setRewards } = useAppContext();
+  const context = useAppContext();
+  const setStakedBalance = context?.setStruBalance;
+  const setRewards = context?.setStruBalance;
+
   const { promptName, promptClass, handleShowPrompt, handleHidePrompt } =
     usePrompt();
 
@@ -29,22 +33,27 @@ export const MainInfo = () => {
   const numberOfRewards = useGetNumberOfRewards();
   const totalAmount = useGetTotalAmountOfStakes();
   const timeStamp = useGetTimeStampOfTheEnd();
-  const stakedBalance = useGetStakedBalance(address);
-  const userRewards = useGetUserRewards(address);
+  const stakedBalance = useGetStakedBalance(String(address));
+  const userRewards = useGetUserRewards(String(address));
 
-  const formattedStakedBalance = stakedBalance
-    ? toFixedDigits(Number(formatEther(stakedBalance)))
-    : 0;
-  const formattedUserRewards = userRewards
-    ? toFixedDigits(Number(formatEther(userRewards)))
-    : 0;
-  const percent = calcPercent(numberOfRewards, totalAmount);
-  const days = calcEndingTime(timeStamp);
+  const formattedStakedBalance =
+    stakedBalance && typeof stakedBalance === "bigint"
+      ? toFixedDigits(Number(formatEther(stakedBalance)))
+      : 0;
+  const formattedUserRewards =
+    userRewards && typeof userRewards === "bigint"
+      ? toFixedDigits(Number(formatEther(userRewards)))
+      : 0;
+  const percent =
+    typeof numberOfRewards === "bigint" && typeof totalAmount === "bigint"
+      ? calcPercent(numberOfRewards, totalAmount)
+      : 0;
+  const days = typeof timeStamp === "bigint" ? calcEndingTime(timeStamp) : 0;
 
   useEffect(() => {
-    if ((stakedBalance !== undefined) & (userRewards !== undefined)) {
-      setStakedBalance(stakedBalance);
-      setRewards(userRewards);
+    if (stakedBalance && userRewards && setStakedBalance && setRewards) {
+      setStakedBalance(String(stakedBalance));
+      setRewards(String(userRewards));
     }
   }, [stakedBalance, userRewards, setStakedBalance, setRewards]);
 

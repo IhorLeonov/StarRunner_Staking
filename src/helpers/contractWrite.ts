@@ -1,5 +1,5 @@
-import stakeABI from "./abis/stakeABI.json";
-import struABI from "./abis/struABI.json";
+import stakeABI from "../constants/abis/stakeABI.json";
+import struABI from "../constants/abis/struABI.json";
 import { useContractWrite, useWaitForTransaction } from "wagmi";
 import { useAppContext } from "../context/context";
 import { ContractWriteData, WriteStakeFunc } from "../constants/types";

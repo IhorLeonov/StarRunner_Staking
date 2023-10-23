@@ -1,5 +1,5 @@
-import stakeABI from "./abis/stakeABI.json";
-import struABI from "./abis/struABI.json";
+import stakeABI from "../constants/abis/stakeABI.json";
+import struABI from "../constants/abis/struABI.json";
 import { useContractRead } from "wagmi";
 
 const { VITE_STAKE_ADDRESS, VITE_STRU_ADDRESS } = import.meta.env;
