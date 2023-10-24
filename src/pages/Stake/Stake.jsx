@@ -58,6 +58,7 @@ export const Stake = () => {
   }, [apprLoading, stakeLoading]);
 
   const handleSubmit = (amount) => {
+    console.log(typeof amount);
     const payload = parseEther(amount);
     setPayload(payload); // bigint
 

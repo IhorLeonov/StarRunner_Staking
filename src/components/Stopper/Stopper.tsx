@@ -2,8 +2,9 @@ import s from "./Stopper.module.scss";
 import crossIcon from "../../assets/icons/circle-cross.svg";
 import walletIcon from "../../assets/icons/wallet-card.svg";
 import { ConnectionBtn } from "../ConnectionBtn/ConnectionBtn";
+import { FC } from "react";
 
-export const Stopper = () => {
+export const Stopper: FC = () => {
   return (
     <div className={s.stopper}>
       <div className={s.stopper_img_box}>

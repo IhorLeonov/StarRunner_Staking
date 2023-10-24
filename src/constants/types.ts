@@ -4,6 +4,21 @@ export interface ContractWriteData {
   hash: `0x${string}` | undefined;
 }
 
+export interface isActiveProps {
+  isActive: boolean;
+}
+
+export interface SelectIconProps {
+  name: string;
+  width: number;
+  height: number;
+}
+
+export interface TransactionsFormProps {
+  balance: string;
+  handleSubmit: (amount: string) => void;
+}
+
 export type WriteStakeFunc = (args?: { args: number[] }) => void;
 
 export interface ContextProps {

@@ -4,18 +4,23 @@ import { Form, Field as Input } from "formik";
 import { yupSchema } from "../../helpers/yupSchema";
 import { useAppContext } from "../../context/context";
 import { parseEther } from "viem";
+import { FC, ChangeEvent } from "react";
+import { TransactionsFormProps } from "../../constants/types";
 
-// disable change input value on scroll
-document.addEventListener("wheel", function () {
-  if (document.activeElement.type === "number") {
-    document.activeElement.blur();
-  }
-});
+// disable change input value on scroll for input type number
 
-export const TransactionsForm = ({ handleSubmit, balance }) => {
-  // console.log(typeof balance, "balance");
+// document.addEventListener("wheel", function () {
+//   const e = document.activeElement as HTMLInputElement;
+//   if ("blur" in e && "type" in e) {
+//     e.blur();
+//   }
+// });
 
-  const { setInputValue } = useAppContext();
+export const TransactionsForm: FC<TransactionsFormProps> = ({
+  handleSubmit,
+  balance,
+}) => {
+  const setInputValue = useAppContext()?.setInputValue;
   const { schema } = yupSchema(balance);
 
   // const input = document.querySelector("input");
@@ -35,8 +40,10 @@ export const TransactionsForm = ({ handleSubmit, balance }) => {
       validationSchema={schema}
       onSubmit={(values, actions) => {
         const { amount } = values;
-        handleSubmit(amount);
-        setInputValue(0);
+        console.log(amount);
+
+        handleSubmit(String(amount));
+        if (setInputValue) setInputValue("0");
         actions.resetForm();
       }}
     >
@@ -48,13 +55,14 @@ export const TransactionsForm = ({ handleSubmit, balance }) => {
           <Form
             id="form"
             className={s.form}
-            onChange={(e) => {
-              setInputValue(parseEther(e.target.value));
+            onChange={(e: ChangeEvent<HTMLFormElement>) => {
+              if (setInputValue)
+                setInputValue(String(parseEther(e.target.value)));
             }}
           >
             <Input
               className={s.form_input + " " + warningStyles()}
-              type="text"
+              type="number"
               name="amount"
               placeholder="Enter stake amount"
               autoComplete="off"
