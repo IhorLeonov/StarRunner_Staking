@@ -1,8 +1,5 @@
 import { ReactNode, Dispatch, SetStateAction } from "react";
-
-export interface ContractWriteData {
-  hash: `0x${string}` | undefined;
-}
+import { WriteContractResult } from "wagmi/actions";
 
 export interface isActiveProps {
   isActive: boolean;
@@ -19,7 +16,9 @@ export interface TransactionsFormProps {
   handleSubmit: (amount: string) => void;
 }
 
-export type WriteStakeFunc = (args?: { args: number[] }) => void;
+export type WriteDataType = WriteContractResult;
+
+export type WriteStakeFuncType = (args?: { args: bigint[] }) => void;
 
 export interface ContextProps {
   children: ReactNode;
@@ -41,12 +40,3 @@ export interface AppContextProps {
   payload: bigint;
   setPayload: Dispatch<SetStateAction<bigint>>;
 }
-
-// export interface FilterProps {
-//   filterValue: string;
-//   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-// }
-
-// export interface LayoutProps {
-//   children: JSX.Element | JSX.Element[];
-// }

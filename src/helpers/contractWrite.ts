@@ -2,14 +2,13 @@ import stakeABI from "../constants/abis/stakeABI.json";
 import struABI from "../constants/abis/struABI.json";
 import { useContractWrite, useWaitForTransaction } from "wagmi";
 import { useAppContext } from "../context/context";
-import { ContractWriteData, WriteStakeFunc } from "../constants/types";
+import { WriteDataType, WriteStakeFuncType } from "../constants/types";
 
 const { VITE_STAKE_ADDRESS, VITE_STRU_ADDRESS } = import.meta.env;
 
 // approving token amount before staking, gets stake address and token amount in args
 export const useApproveStaking = () => {
   const setStatus = useAppContext()?.setStatus;
-  // const { setStatus } = useAppContext();
 
   const {
     data: apprData,
@@ -30,13 +29,12 @@ export const useApproveStaking = () => {
 
 // method for waitting useApproveStaking transaction, gets in approve writing hash, stake writing function and token amount in props
 export const useWaitForApprove = (
-  data: ContractWriteData | undefined,
-  writeStake: WriteStakeFunc | undefined,
-  amount: number
+  data: WriteDataType | undefined,
+  writeStake: WriteStakeFuncType | undefined,
+  amount: bigint
 ) => {
   const setStatus = useAppContext()?.setStatus;
   const setTransactionStatus = useAppContext()?.setTransactionStatus;
-  // const { setStatus, setTransactionStatus } = useAppContext();
 
   const { isLoading: apprLoading } = useWaitForTransaction({
     hash: data?.hash,
@@ -61,7 +59,6 @@ export const useWaitForApprove = (
 // send STRU token to stake, pass amount of staked token in args
 export const useStakeToken = () => {
   const setStatus = useAppContext()?.setStatus;
-  // const { setStatus } = useAppContext();
 
   const {
     data: stakeData,
@@ -76,14 +73,14 @@ export const useStakeToken = () => {
       if (setStatus) setStatus("error");
     },
   });
+
   return { writeStake, stakeData, stakeWriteLoading };
 };
 
 // method for waitting useStakeToken transaction, gets in approve writing hash in props
-export const useWaitForStake = (data: ContractWriteData) => {
+export const useWaitForStake = (data: WriteDataType | undefined) => {
   const setStatus = useAppContext()?.setStatus;
   const setTransactionStatus = useAppContext()?.setTransactionStatus;
-  // const { setStatus, setTransactionStatus } = useAppContext();
 
   const { isLoading: stakeLoading } = useWaitForTransaction({
     hash: data?.hash,
@@ -108,7 +105,6 @@ export const useWaitForStake = (data: ContractWriteData) => {
 // get STRU token from stake, pass desired amount of token in args
 export const useWithdraw = () => {
   const setStatus = useAppContext()?.setStatus;
-  // const { setStatus } = useAppContext();
 
   const {
     data: dataWithdraw,
@@ -126,10 +122,9 @@ export const useWithdraw = () => {
 };
 
 // method for waitting useWithdraw transaction
-export const useWaitForWithdraw = (data: ContractWriteData) => {
+export const useWaitForWithdraw = (data: WriteDataType) => {
   const setStatus = useAppContext()?.setStatus;
   const setTransactionStatus = useAppContext()?.setTransactionStatus;
-  // const { setStatus, setTransactionStatus } = useAppContext();
 
   const { isLoading: withdrawLoading } = useWaitForTransaction({
     hash: data?.hash,
@@ -154,7 +149,6 @@ export const useWaitForWithdraw = (data: ContractWriteData) => {
 // get rewards from stake
 export const useClaimRewards = () => {
   const setStatus = useAppContext()?.setStatus;
-  // const { setStatus } = useAppContext();
 
   const {
     data: dataClaim,
@@ -172,10 +166,9 @@ export const useClaimRewards = () => {
 };
 
 // method for waitting useClaimRewards transaction
-export const useWaitClaimRewards = (data: ContractWriteData) => {
+export const useWaitClaimRewards = (data: WriteDataType) => {
   const setStatus = useAppContext()?.setStatus;
   const setTransactionStatus = useAppContext()?.setTransactionStatus;
-  // const { setStatus, setTransactionStatus } = useAppContext();
 
   const { isLoading: claimLoading } = useWaitForTransaction({
     hash: data?.hash,
@@ -200,7 +193,6 @@ export const useWaitClaimRewards = (data: ContractWriteData) => {
 // take all (staked balance + rewards) from stake
 export const useTakeAll = () => {
   const setStatus = useAppContext()?.setStatus;
-  // const { setStatus } = useAppContext();
 
   const {
     data: takeAllData,
@@ -218,10 +210,9 @@ export const useTakeAll = () => {
 };
 
 // method for waitting useTakeAll transaction
-export const useWaitTakeAll = (data: ContractWriteData) => {
+export const useWaitTakeAll = (data: WriteDataType) => {
   const setStatus = useAppContext()?.setStatus;
   const setTransactionStatus = useAppContext()?.setTransactionStatus;
-  // const { setStatus, setTransactionStatus } = useAppContext();
 
   const { isLoading: takeAllLoading } = useWaitForTransaction({
     hash: data?.hash,

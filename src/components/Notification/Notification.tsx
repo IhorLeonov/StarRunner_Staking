@@ -1,36 +1,33 @@
 import s from "./Notification.module.scss";
 import { useAppContext } from "../../context/context";
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { formatEther } from "viem";
 import crossIcon from "../../assets/icons/cross.svg";
 import tickIcon from "../../assets/icons/tick.svg";
-import { formatEther } from "viem";
 
-export const Notification = () => {
+export const Notification: FC = () => {
   const location = useLocation();
-  const {
-    status,
-    setStatus,
-    transactionStatus,
-    setTransactionStatus,
-    payload,
-  } = useAppContext();
+  const context = useAppContext();
 
-  const tokenAmount = Number(formatEther(payload)).toFixed(2);
+  const status = context?.status;
+  const payload = context?.payload;
+  const transactionStatus = context?.transactionStatus;
+  const tokenAmount = payload ? Number(formatEther(payload)).toFixed(2) : 0;
 
   // close notification
   useEffect(() => {
-    if (status.includes("success") || status.includes("error")) {
+    if (status?.includes("success") || status?.includes("error")) {
       setTimeout(() => {
-        setStatus("");
+        context?.setStatus("");
       }, 5000);
     }
   }, [status]);
 
   // close notification if user change route
   useEffect(() => {
-    setStatus("");
-    setTransactionStatus("");
+    context?.setStatus("");
+    context?.setTransactionStatus("");
   }, [location]);
 
   return (
@@ -38,13 +35,13 @@ export const Notification = () => {
       {/*  showing loader  */}
       {transactionStatus && !status && <div className={s.notify_loader} />}
       {/*  showing success img  */}
-      {status.includes("success") && (
+      {status?.includes("success") && (
         <div className={s.notify_circle_success}>
           <img src={tickIcon} alt="Tick icon" />
         </div>
       )}
       {/*  showing error img  */}
-      {status.includes("error") && (
+      {status?.includes("error") && (
         <div className={s.notify_circle_error}>
           <img src={crossIcon} alt="Cross icon" />
         </div>

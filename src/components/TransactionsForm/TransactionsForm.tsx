@@ -8,31 +8,19 @@ import { FC, ChangeEvent } from "react";
 import { TransactionsFormProps } from "../../constants/types";
 
 // disable change input value on scroll for input type number
-
-// document.addEventListener("wheel", function () {
-//   const e = document.activeElement as HTMLInputElement;
-//   if ("blur" in e && "type" in e) {
-//     e.blur();
-//   }
-// });
+document.addEventListener("wheel", function () {
+  const e = document.activeElement as HTMLInputElement;
+  if ("blur" in e && "type" in e) {
+    e.blur();
+  }
+});
 
 export const TransactionsForm: FC<TransactionsFormProps> = ({
   handleSubmit,
   balance,
 }) => {
-  const setInputValue = useAppContext()?.setInputValue;
+  const context = useAppContext();
   const { schema } = yupSchema(balance);
-
-  // const input = document.querySelector("input");
-  // const REGEXP = /[0-9/]+/;
-
-  // if (input) {
-  //   input.addEventListener("keydown", (event) => {
-  //     if (!REGEXP.test(event.key)) {
-  //       event.preventDefault();
-  //     }
-  //   });
-  // }
 
   return (
     <Formik
@@ -40,10 +28,9 @@ export const TransactionsForm: FC<TransactionsFormProps> = ({
       validationSchema={schema}
       onSubmit={(values, actions) => {
         const { amount } = values;
-        console.log(amount);
 
-        handleSubmit(String(amount));
-        if (setInputValue) setInputValue("0");
+        handleSubmit(amount);
+        context?.setInputValue("0");
         actions.resetForm();
       }}
     >
@@ -56,13 +43,12 @@ export const TransactionsForm: FC<TransactionsFormProps> = ({
             id="form"
             className={s.form}
             onChange={(e: ChangeEvent<HTMLFormElement>) => {
-              if (setInputValue)
-                setInputValue(String(parseEther(e.target.value)));
+              context?.setInputValue(String(parseEther(e.target.value)));
             }}
           >
             <Input
               className={s.form_input + " " + warningStyles()}
-              type="number"
+              type="text"
               name="amount"
               placeholder="Enter stake amount"
               autoComplete="off"

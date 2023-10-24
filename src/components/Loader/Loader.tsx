@@ -3,9 +3,9 @@ import s from "./Loader.module.scss";
 import { RotatingLines } from "react-loader-spinner";
 
 interface LoaderProps {
-  style: object;
-  width: string;
-  color: string;
+  style?: object;
+  width?: string;
+  color?: string;
 }
 
 export const Loader: FC<LoaderProps> = ({ style, width, color = "white" }) => {

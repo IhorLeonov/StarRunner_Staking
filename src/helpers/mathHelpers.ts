@@ -15,7 +15,7 @@ export const calcEndingTime = (timeStamp: bigint) => {
 };
 
 export const calcTotalRate = (
-  stakedBalance: number | bigint,
+  stakedBalance: bigint,
   totalAvailble: number,
   totalSupply: number,
   inputValue: string

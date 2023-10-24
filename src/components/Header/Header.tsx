@@ -13,13 +13,11 @@ import { toFixedDigits, formattAddress } from "../../helpers/mathHelpers";
 import { DisconnectBtn } from "../DisconnectBtn/DisconnectBtn";
 
 export const Header = () => {
-  const context = useAppContext();
-  const setStruBalance = context?.setStruBalance;
-
   const { isConnected, address } = useAccount();
   const { data: walletBalance } = useBalance({ address });
 
   const struBalance = useGetSTRUBalance(String(address));
+  const setStruBalance = useAppContext()?.setStruBalance;
   const formattedWalletBalance = toFixedDigits(
     Number(walletBalance?.formatted)
   );

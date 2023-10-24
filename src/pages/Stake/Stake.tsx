@@ -24,18 +24,15 @@ import {
 const { VITE_STAKE_ADDRESS } = import.meta.env;
 
 export const Stake = () => {
-  const {
-    struBalance,
-    stakedBalance,
-    setTransactionStatus,
-    payload,
-    setPayload,
-    inputValue,
-  } = useAppContext();
+  const context = useAppContext();
+  const struBalance = context?.struBalance;
+  const stakedBalance = context?.stakedBalance;
+  const payload = context?.payload ? context?.payload : 0n;
+  const inputValue = context?.inputValue;
 
   const { address } = useAccount();
 
-  const allowance = useCheckAllowance(address);
+  const allowance = useCheckAllowance(String(address));
   const periodFinish = Number(useGetTimeStampOfTheEnd());
   const remaining = periodFinish - currentStamp;
   const rewardRate = Number(useGetRewardRate());
@@ -45,26 +42,32 @@ export const Stake = () => {
   const { writeApprove, apprWriteLoading, apprData } = useApproveStaking();
   const { writeStake, stakeWriteLoading, stakeData } = useStakeToken();
 
-  const { apprLoading } = useWaitForApprove(apprData, writeStake, payload); // data - ContractWriteData, writeStake - WriteStakeFunc, payload - number
+  const { apprLoading } = useWaitForApprove(apprData, writeStake, payload);
   const { stakeLoading } = useWaitForStake(stakeData);
 
   const totalRate = useMemo(() => {
-    return calcTotalRate(stakedBalance, totalAvailble, totalSupply, inputValue);
+    if (stakedBalance && inputValue) {
+      return calcTotalRate(
+        stakedBalance,
+        totalAvailble,
+        totalSupply,
+        inputValue
+      );
+    }
   }, [stakedBalance, totalAvailble, totalSupply, inputValue]);
 
   useEffect(() => {
-    if (apprLoading) setTransactionStatus("approve_loading");
-    if (stakeLoading) setTransactionStatus("stake_loading");
+    if (apprLoading) context?.setTransactionStatus("approve_loading");
+    if (stakeLoading) context?.setTransactionStatus("stake_loading");
   }, [apprLoading, stakeLoading]);
 
-  const handleSubmit = (amount) => {
-    console.log(typeof amount);
-    const payload = parseEther(amount);
-    setPayload(payload); // bigint
+  const handleSubmit = (amount: string) => {
+    const weiAmount = parseEther(amount);
+    context?.setPayload(weiAmount);
 
-    if (allowance < payload) {
-      writeApprove({ args: [VITE_STAKE_ADDRESS, payload] });
-    } else writeStake({ args: [payload] });
+    if (typeof allowance === "bigint" && allowance < weiAmount) {
+      writeApprove({ args: [VITE_STAKE_ADDRESS, weiAmount] });
+    } else writeStake({ args: [weiAmount] });
   };
 
   const isLoading = apprWriteLoading || stakeWriteLoading;
@@ -81,14 +84,17 @@ export const Stake = () => {
           <span className={s.page_rate_desc}> STRU/WEEK</span>
         </p>
       </div>
-      <TransactionsForm handleSubmit={handleSubmit} balance={struBalance} />
+      <TransactionsForm
+        handleSubmit={handleSubmit}
+        balance={struBalance !== undefined ? struBalance : ""}
+      />
       <button
         form="form"
         className={s.page_form_btn + " " + s.stake_btn}
         type="submit"
         disabled={isLoading}
       >
-        {isLoading ? <Loader width={24} /> : "Stake"}
+        {isLoading ? <Loader width="24" /> : "Stake"}
       </button>
     </div>
   );
