@@ -122,7 +122,7 @@ export const useWithdraw = () => {
 };
 
 // method for waitting useWithdraw transaction
-export const useWaitForWithdraw = (data: WriteDataType) => {
+export const useWaitForWithdraw = (data: WriteDataType | undefined) => {
   const setStatus = useAppContext()?.setStatus;
   const setTransactionStatus = useAppContext()?.setTransactionStatus;
 
@@ -166,7 +166,7 @@ export const useClaimRewards = () => {
 };
 
 // method for waitting useClaimRewards transaction
-export const useWaitClaimRewards = (data: WriteDataType) => {
+export const useWaitClaimRewards = (data: WriteDataType | undefined) => {
   const setStatus = useAppContext()?.setStatus;
   const setTransactionStatus = useAppContext()?.setTransactionStatus;
 
@@ -210,7 +210,7 @@ export const useTakeAll = () => {
 };
 
 // method for waitting useTakeAll transaction
-export const useWaitTakeAll = (data: WriteDataType) => {
+export const useWaitTakeAll = (data: WriteDataType | undefined) => {
   const setStatus = useAppContext()?.setStatus;
   const setTransactionStatus = useAppContext()?.setTransactionStatus;
 

@@ -15,17 +15,15 @@ import { formatEther, parseEther } from "viem";
 import { toFixedDigits } from "../../helpers/mathHelpers";
 
 export const Withdraw = () => {
-  const {
-    setTransactionStatus,
-    setPayload,
-    stakedBalance,
-    rewards,
-    // isWalletConnect,
-  } = useAppContext();
+  const context = useAppContext();
+  const stakedBalance = context?.stakedBalance;
+  const rewards = context?.rewards;
 
-  const formattedStakedBalance = stakedBalance // isWalletConnect
+  const formattedStakedBalance = stakedBalance
     ? toFixedDigits(Number(formatEther(stakedBalance)))
-    : 0;
+    : "0";
+
+  console.log(formattedStakedBalance);
 
   const { writeWithdraw, dataWithdraw, withdrawIsLoading } = useWithdraw();
   const { takeAllWrite, takeAllData, takeAllIsLoading } = useTakeAll();
@@ -34,19 +32,21 @@ export const Withdraw = () => {
   const { takeAllLoading } = useWaitTakeAll(takeAllData);
 
   useEffect(() => {
-    if (withdrawLoading) setTransactionStatus("withdraw_loading");
-    if (takeAllLoading) setTransactionStatus("exit_loading");
+    if (withdrawLoading) context?.setTransactionStatus("withdraw_loading");
+    if (takeAllLoading) context?.setTransactionStatus("exit_loading");
   }, [withdrawLoading, takeAllLoading]);
 
-  const handleSubmit = (amount) => {
+  const handleSubmit = (amount: string) => {
     const payload = parseEther(amount);
 
-    setPayload(payload);
+    context?.setPayload(payload);
     writeWithdraw({ args: [payload] });
   };
 
   const handleTakeAll = () => {
-    setPayload(stakedBalance + rewards);
+    if (stakedBalance && rewards) {
+      context?.setPayload(stakedBalance + rewards);
+    }
     takeAllWrite();
   };
 
@@ -59,7 +59,9 @@ export const Withdraw = () => {
       </div>
       <TransactionsForm
         handleSubmit={handleSubmit}
-        balance={formattedStakedBalance}
+        balance={
+          formattedStakedBalance !== undefined ? formattedStakedBalance : ""
+        }
       />
       <div className={s.withdrow_buttons_box}>
         <button
@@ -68,7 +70,7 @@ export const Withdraw = () => {
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? <Loader width={24} /> : "Withdraw"}
+          {isLoading ? <Loader width="24" /> : "Withdraw"}
         </button>
         <button
           className={s.page_form_btn + " " + s.withdraw_btn_all}
