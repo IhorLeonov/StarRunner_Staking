@@ -1,10 +1,11 @@
 import s from "../Pages.module.scss";
+import styles from "./Withdraw.module.scss";
 import { useEffect } from "react";
 import { useAppContext } from "../../context/context";
-import { Loader } from "../../components/Loader/Loader";
 import { TransactionForm } from "../../components/TransactionForm/TransactionForm";
 import { formatEther, parseEther } from "viem";
 import { toFixedDigits } from "../../helpers/mathHelpers";
+import { SubmitButton } from "../../components/SubmitButton/SubmitButton";
 
 import {
   useWithdraw,
@@ -24,9 +25,9 @@ export const Withdraw = () => {
 
   const { writeWithdraw, dataWithdraw, withdrawIsLoading } = useWithdraw();
   const { takeAllWrite, takeAllData, takeAllIsLoading } = useTakeAll();
-
   const { withdrawLoading } = useWaitForWithdraw(dataWithdraw);
   const { takeAllLoading } = useWaitTakeAll(takeAllData);
+  const isLoading = withdrawIsLoading || takeAllIsLoading;
 
   useEffect(() => {
     if (withdrawLoading) context?.setTransactionStatus("withdraw_loading");
@@ -47,8 +48,6 @@ export const Withdraw = () => {
     takeAllWrite();
   };
 
-  const isLoading = withdrawIsLoading || takeAllIsLoading;
-
   return (
     <div className={s.page}>
       <div className={s.page_header}>
@@ -60,17 +59,14 @@ export const Withdraw = () => {
           formattedStakedBalance !== undefined ? formattedStakedBalance : ""
         }
       />
-      <div className={s.withdrow_buttons_box}>
+      <div className={styles.withdrow_buttons_box}>
+        <SubmitButton
+          text="Withdraw"
+          className={"withdraw_btn"}
+          isLoading={isLoading}
+        />
         <button
-          form="form"
-          className={s.page_form_btn + " " + s.withdraw_btn}
-          type="submit"
-          disabled={isLoading}
-        >
-          {isLoading ? <Loader width="24" /> : "Withdraw"}
-        </button>
-        <button
-          className={s.page_form_btn + " " + s.withdraw_btn_all}
+          className={s.page_submit_btn + " " + styles.withdraw_btn_all}
           type="button"
           onClick={handleTakeAll}
         >

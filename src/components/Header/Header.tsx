@@ -36,7 +36,11 @@ export const Header = () => {
   return (
     <header className={s.header}>
       <div className={s.header_container}>
-        <a href="https://dexola.com/" target="_blank" rel="noreferrer">
+        <a
+          href="https://dexola-camp-project.vercel.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <Icon name="logo" width={35} height={20} />
         </a>
         {isConnected ? (

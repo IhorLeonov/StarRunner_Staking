@@ -1,16 +1,12 @@
 import { FC } from "react";
 import s from "./Prompt.module.scss";
+import { PromptProps } from "../../constants/types";
 
 const balanceString = "Staking rewards get allocated on this sum";
 const aprString = "Displays the average for APR.";
 const aprSecondString =
   "Interest rate is calculated for each amount of tokens.";
 const rewardsString = "Rewards get allocated every second";
-
-interface PromptProps {
-  promptName: string | null;
-  promptClass: string | null;
-}
 
 export const Prompt: FC<PromptProps> = ({ promptName, promptClass }) => {
   return (

@@ -48,63 +48,8 @@
     }
   }
 
-  &_form_btn {
+  &_submit_btn {
     @include button;
     margin-top: auto;
-  }
-}
-
-.claim_available {
-  margin-top: 24px;
-  padding-top: 2px;
-  color: var(--color-text-desc);
-
-  @media screen and (min-width: $tablet) {
-    margin-top: 16px;
-  }
-
-  :last-child {
-    color: var(--color-text-main);
-  }
-}
-
-.claim_available_value {
-  font-family: var(--font-family--roboto-mono-bold);
-  color: var(--color-text-main);
-}
-
-@media screen and (min-width: $tablet) {
-  .stake_btn {
-    width: 130px;
-  }
-
-  .withdraw_btn {
-    width: 160px;
-    margin-top: 0;
-  }
-
-  .claim_btn {
-    width: 210px;
-  }
-}
-
-.withdrow_buttons_box {
-  display: flex;
-  margin-top: auto;
-}
-
-.withdraw_btn_all {
-  @media screen and (max-width: $max-tablet) {
-    display: none;
-  }
-
-  width: 358px;
-  background-color: transparent;
-  transition: all 0.2s ease-in-out;
-
-  &:hover,
-  &:focus {
-    background-color: transparent;
-    color: var(--color-accent);
   }
 }

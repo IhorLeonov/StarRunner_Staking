@@ -1,0 +1,6 @@
+@import "../../sass/utils/mixins";
+
+.submit_form_btn {
+  @include button;
+  margin-top: auto;
+}

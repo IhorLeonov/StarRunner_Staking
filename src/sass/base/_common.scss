@@ -12,7 +12,6 @@
 }
 
 .balance_prompt {
-  // display: block;
   @media screen and (max-width: $max-tablet) {
     animation: move 300ms linear;
     animation-fill-mode: forwards;
@@ -28,7 +27,6 @@
 }
 
 .apr_prompt {
-  // display: block;
   @media screen and (max-width: $max-tablet) {
     animation: move 300ms linear;
     animation-fill-mode: forwards;
@@ -42,8 +40,6 @@
   }
 }
 .rewards_prompt {
-  // display: block;
-
   @media screen and (max-width: $max-tablet) {
     animation: move 300ms linear;
     animation-fill-mode: forwards;
@@ -54,5 +50,20 @@
     left: -84px;
     animation: expand-bounce 300ms;
     animation-fill-mode: forwards;
+  }
+}
+
+@media screen and (min-width: $tablet) {
+  .stake_btn {
+    width: 130px !important;
+  }
+
+  .withdraw_btn {
+    width: 160px !important;
+    margin-top: 0 !important;
+  }
+
+  .claim_btn {
+    width: 210px !important;
   }
 }

@@ -3,9 +3,9 @@ import { useAppContext } from "../../context/context";
 import { useAccount } from "wagmi";
 import { currentStamp, calcTotalRate } from "../../helpers/mathHelpers";
 import { useEffect, useMemo } from "react";
-import { Loader } from "../../components/Loader/Loader";
 import { TransactionForm } from "../../components/TransactionForm/TransactionForm";
 import { parseEther } from "viem";
+import { SubmitButton } from "../../components/SubmitButton/SubmitButton";
 
 import {
   useCheckAllowance,
@@ -41,9 +41,9 @@ export const Stake = () => {
 
   const { writeApprove, apprWriteLoading, apprData } = useApproveStaking();
   const { writeStake, stakeWriteLoading, stakeData } = useStakeToken();
-
   const { apprLoading } = useWaitForApprove(apprData, writeStake, payload);
   const { stakeLoading } = useWaitForStake(stakeData);
+  const isLoading = apprWriteLoading || stakeWriteLoading;
 
   const totalRate = useMemo(() => {
     if (stakedBalance && inputValue) {
@@ -70,8 +70,6 @@ export const Stake = () => {
     } else writeStake({ args: [weiAmount] });
   };
 
-  const isLoading = apprWriteLoading || stakeWriteLoading;
-
   return (
     <div className={s.page}>
       <div className={s.page_header}>
@@ -88,14 +86,11 @@ export const Stake = () => {
         handleSubmit={handleSubmit}
         balance={struBalance !== undefined ? struBalance : ""}
       />
-      <button
-        form="form"
-        className={s.page_form_btn + " " + s.stake_btn}
-        type="submit"
-        disabled={isLoading}
-      >
-        {isLoading ? <Loader width="24" /> : "Stake"}
-      </button>
+      <SubmitButton
+        text="Stake"
+        className={"stake_btn"}
+        isLoading={isLoading}
+      />
     </div>
   );
 };

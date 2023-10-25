@@ -40,3 +40,14 @@ export interface AppContextProps {
   payload: bigint;
   setPayload: Dispatch<SetStateAction<bigint>>;
 }
+
+export interface SubmitButtonProps {
+  text: string;
+  className: string;
+  isLoading: boolean;
+}
+
+export interface PromptProps {
+  promptName: string | null;
+  promptClass: string | null;
+}

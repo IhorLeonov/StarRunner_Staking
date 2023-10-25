@@ -1,4 +1,5 @@
 import s from "../Pages.module.scss";
+import styles from "./ClaimRewards.module.scss";
 import { useEffect } from "react";
 import { Loader } from "../../components/Loader/Loader";
 import { useAppContext } from "../../context/context";
@@ -39,13 +40,13 @@ export const ClaimRewards = () => {
       <div className={s.page_header}>
         <h2 className={s.page_title}>Claim rewards</h2>
       </div>
-      <p className={s.claim_available}>
+      <p className={styles.claim_available}>
         Available:{" "}
-        <span className={s.claim_available_value}>{formattedRewards}</span>
+        <span className={styles.claim_available_value}>{formattedRewards}</span>
         <span> STRU</span>
       </p>
       <button
-        className={s.page_form_btn + " " + s.claim_btn}
+        className={s.page_submit_btn + " " + styles.claim_btn}
         type="button"
         onClick={handleClick}
         disabled={isLoading}

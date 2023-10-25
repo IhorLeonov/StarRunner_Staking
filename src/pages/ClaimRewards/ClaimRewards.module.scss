@@ -1,0 +1,27 @@
+@import "../../sass/utils/variables";
+@import "../../sass/utils/mixins";
+
+.claim_available {
+  margin-top: 24px;
+  padding-top: 2px;
+  color: var(--color-text-desc);
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 16px;
+  }
+
+  :last-child {
+    color: var(--color-text-main);
+  }
+}
+
+.claim_available_value {
+  font-family: var(--font-family--roboto-mono-bold);
+  color: var(--color-text-main);
+}
+
+@media screen and (min-width: $tablet) {
+  .claim_btn {
+    width: 210px;
+  }
+}
