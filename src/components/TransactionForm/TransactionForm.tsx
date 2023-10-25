@@ -1,11 +1,11 @@
-import s from "./TransactionsForm.module.scss";
+import s from "./TransactionForm.module.scss";
 import { Formik } from "formik";
 import { Form, Field as Input } from "formik";
 import { yupSchema } from "../../helpers/yupSchema";
 import { useAppContext } from "../../context/context";
 import { parseEther } from "viem";
 import { FC, ChangeEvent } from "react";
-import { TransactionsFormProps } from "../../constants/types";
+import { TransactionFormProps } from "../../constants/types";
 
 // disable change input value on scroll for input type number
 document.addEventListener("wheel", function () {
@@ -15,7 +15,7 @@ document.addEventListener("wheel", function () {
   }
 });
 
-export const TransactionsForm: FC<TransactionsFormProps> = ({
+export const TransactionForm: FC<TransactionFormProps> = ({
   handleSubmit,
   balance,
 }) => {

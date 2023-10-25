@@ -4,7 +4,7 @@ import { useAccount } from "wagmi";
 import { currentStamp, calcTotalRate } from "../../helpers/mathHelpers";
 import { useEffect, useMemo } from "react";
 import { Loader } from "../../components/Loader/Loader";
-import { TransactionsForm } from "../../components/TransactionsForm/TransactionsForm";
+import { TransactionForm } from "../../components/TransactionForm/TransactionForm";
 import { parseEther } from "viem";
 
 import {
@@ -84,7 +84,7 @@ export const Stake = () => {
           <span className={s.page_rate_desc}> STRU/WEEK</span>
         </p>
       </div>
-      <TransactionsForm
+      <TransactionForm
         handleSubmit={handleSubmit}
         balance={struBalance !== undefined ? struBalance : ""}
       />

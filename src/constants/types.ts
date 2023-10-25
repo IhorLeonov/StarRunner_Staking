@@ -11,7 +11,7 @@ export interface SelectIconProps {
   height: number;
 }
 
-export interface TransactionsFormProps {
+export interface TransactionFormProps {
   balance: string;
   handleSubmit: (amount: string) => void;
 }

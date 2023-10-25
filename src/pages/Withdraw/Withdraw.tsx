@@ -1,5 +1,10 @@
 import s from "../Pages.module.scss";
 import { useEffect } from "react";
+import { useAppContext } from "../../context/context";
+import { Loader } from "../../components/Loader/Loader";
+import { TransactionForm } from "../../components/TransactionForm/TransactionForm";
+import { formatEther, parseEther } from "viem";
+import { toFixedDigits } from "../../helpers/mathHelpers";
 
 import {
   useWithdraw,
@@ -8,12 +13,6 @@ import {
   useWaitTakeAll,
 } from "../../helpers/contractWrite";
 
-import { useAppContext } from "../../context/context";
-import { Loader } from "../../components/Loader/Loader";
-import { TransactionsForm } from "../../components/TransactionsForm/TransactionsForm";
-import { formatEther, parseEther } from "viem";
-import { toFixedDigits } from "../../helpers/mathHelpers";
-
 export const Withdraw = () => {
   const context = useAppContext();
   const stakedBalance = context?.stakedBalance;
@@ -21,9 +20,7 @@ export const Withdraw = () => {
 
   const formattedStakedBalance = stakedBalance
     ? toFixedDigits(Number(formatEther(stakedBalance)))
-    : "0";
-
-  console.log(formattedStakedBalance);
+    : "";
 
   const { writeWithdraw, dataWithdraw, withdrawIsLoading } = useWithdraw();
   const { takeAllWrite, takeAllData, takeAllIsLoading } = useTakeAll();
@@ -57,7 +54,7 @@ export const Withdraw = () => {
       <div className={s.page_header}>
         <h2 className={s.page_title}>Withdraw</h2>
       </div>
-      <TransactionsForm
+      <TransactionForm
         handleSubmit={handleSubmit}
         balance={
           formattedStakedBalance !== undefined ? formattedStakedBalance : ""
