@@ -53,3 +53,11 @@ export interface PromptProps {
   promptName: string | null;
   promptClass: string | null;
 }
+
+export interface HelpBtnProps {
+  name: string;
+  promptName: string | null;
+  promptClass: string | null;
+  handleShowPrompt: (name: string) => void;
+  handleHidePrompt: () => void;
+}

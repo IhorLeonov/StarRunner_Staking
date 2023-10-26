@@ -1,14 +1,7 @@
 import s from "./HelpBtn.module.scss";
 import { Prompt } from "../Prompt/Prompt";
 import { FC, useState } from "react";
-
-interface HelpBtnProps {
-  name: string;
-  promptName: string | null;
-  promptClass: string | null;
-  handleShowPrompt: (name: string) => void;
-  handleHidePrompt: () => void;
-}
+import { HelpBtnProps } from "../../constants/types";
 
 export const HelpBtn: FC<HelpBtnProps> = ({
   name,
@@ -29,9 +22,6 @@ export const HelpBtn: FC<HelpBtnProps> = ({
       setOpen(false);
     }
   };
-
-  // console.log(name, "name");
-  // console.log(promptName, "promptName");
 
   return (
     <button
