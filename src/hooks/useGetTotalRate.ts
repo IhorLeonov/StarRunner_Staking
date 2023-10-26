@@ -9,11 +9,12 @@ import { currentStamp, fromWei } from "../helpers/mathHelpers";
 import { useMemo, useState } from "react";
 
 export const useGetTotalRate = () => {
-  const [totalRate, setTotalRate] = useState<number>();
+  const [totalRate, setTotalRate] = useState<number>(0);
 
   const context = useAppContext();
   const stakedBalance = context?.stakedBalance;
   const inputValue = context?.inputValue;
+  const days = context?.days;
 
   const periodFinish = Number(useGetTimeStampOfTheEnd());
   const remaining = periodFinish - currentStamp;
@@ -22,7 +23,7 @@ export const useGetTotalRate = () => {
   const totalSupply = Number(useGetTotalSupply());
 
   useMemo(() => {
-    if (stakedBalance && inputValue && context?.days > 0) {
+    if (days && days > 0) {
       setTotalRate(
         Math.round(
           fromWei(
@@ -32,7 +33,7 @@ export const useGetTotalRate = () => {
         )
       );
     } else setTotalRate(0);
-  }, [stakedBalance, totalAvailble, totalSupply, inputValue, context?.days]);
+  }, [stakedBalance, totalAvailble, totalSupply, inputValue, days]);
 
   return totalRate;
 };
