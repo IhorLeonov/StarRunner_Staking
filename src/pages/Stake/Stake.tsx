@@ -1,18 +1,12 @@
 import s from "../Pages.module.scss";
 import { useAppContext } from "../../context/context";
 import { useAccount } from "wagmi";
-import { currentStamp, calcTotalRate } from "../../helpers/mathHelpers";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { TransactionForm } from "../../components/TransactionForm/TransactionForm";
 import { parseEther } from "viem";
 import { SubmitButton } from "../../components/SubmitButton/SubmitButton";
-
-import {
-  useCheckAllowance,
-  useGetTimeStampOfTheEnd,
-  useGetRewardRate,
-  useGetTotalSupply,
-} from "../../helpers/contractRead";
+import { useGetTotalRate } from "../../hooks/useGetTotalRate";
+import { useCheckAllowance } from "../../helpers/contractRead";
 
 import {
   useStakeToken,
@@ -26,40 +20,21 @@ const { VITE_STAKE_ADDRESS } = import.meta.env;
 export const Stake = () => {
   const context = useAppContext();
   const struBalance = context?.struBalance;
-  const stakedBalance = context?.stakedBalance;
   const payload = context?.payload ? context?.payload : 0n;
-  const inputValue = context?.inputValue;
+  const totalRate = useGetTotalRate();
 
   const { address } = useAccount();
-
   const allowance = useCheckAllowance(String(address));
-  const periodFinish = Number(useGetTimeStampOfTheEnd());
-  const remaining = periodFinish - currentStamp;
-  const rewardRate = Number(useGetRewardRate());
-  const totalAvailble = remaining * rewardRate;
-  const totalSupply = Number(useGetTotalSupply());
-
   const { writeApprove, apprWriteLoading, apprData } = useApproveStaking();
   const { writeStake, stakeWriteLoading, stakeData } = useStakeToken();
   const { apprLoading } = useWaitForApprove(apprData, writeStake, payload);
   const { stakeLoading } = useWaitForStake(stakeData);
   const isLoading = apprWriteLoading || stakeWriteLoading;
 
-  const totalRate = useMemo(() => {
-    if (stakedBalance && inputValue) {
-      return calcTotalRate(
-        stakedBalance,
-        totalAvailble,
-        totalSupply,
-        inputValue
-      );
-    }
-  }, [stakedBalance, totalAvailble, totalSupply, inputValue]);
-
   useEffect(() => {
     if (apprLoading) context?.setTransactionStatus("approve_loading");
     if (stakeLoading) context?.setTransactionStatus("stake_loading");
-  }, [apprLoading, stakeLoading]);
+  }, [apprLoading, stakeLoading, context]);
 
   const handleSubmit = (amount: string) => {
     const weiAmount = parseEther(amount);

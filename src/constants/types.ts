@@ -31,6 +31,8 @@ export interface AppContextProps {
   setStakedBalance: Dispatch<SetStateAction<bigint>>;
   rewards: bigint;
   setRewards: Dispatch<SetStateAction<bigint>>;
+  days: number;
+  setDays: Dispatch<SetStateAction<number>>;
   status: string;
   setStatus: Dispatch<SetStateAction<string>>;
   transactionStatus: string;

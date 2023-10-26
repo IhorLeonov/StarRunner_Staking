@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }: ContextProps) => {
   const [struBalance, setStruBalance] = useState<string>("");
   const [stakedBalance, setStakedBalance] = useState<bigint>(0n);
   const [rewards, setRewards] = useState<bigint>(0n);
+  const [days, setDays] = useState<number>(0);
 
   const [status, setStatus] = useState<string>("");
   const [transactionStatus, setTransactionStatus] = useState<string>("");
@@ -24,6 +25,8 @@ export const ContextProvider = ({ children }: ContextProps) => {
         setStakedBalance,
         rewards,
         setRewards,
+        days,
+        setDays,
 
         status,
         setStatus,

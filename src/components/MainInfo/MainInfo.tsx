@@ -51,8 +51,10 @@ export const MainInfo = () => {
   const days = typeof timeStamp === "bigint" ? calcEndingTime(timeStamp) : 0;
 
   useEffect(() => {
-    if (setStakedBalance && typeof stakedBalance === "bigint")
-      setStakedBalance(BigInt(stakedBalance));
+    if (typeof stakedBalance === "bigint") {
+      context?.setStakedBalance(BigInt(stakedBalance));
+      context?.setDays(days);
+    }
     if (setRewards && typeof userRewards === "bigint") setRewards(userRewards);
   }, [stakedBalance, userRewards, setStakedBalance, setRewards]);
 

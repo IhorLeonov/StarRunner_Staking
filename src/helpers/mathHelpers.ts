@@ -14,20 +14,10 @@ export const calcPercent = (
 };
 
 export const calcEndingTime = (timeStamp: bigint): number => {
-  return Math.round((Number(timeStamp) - currentStamp) / oneDay);
-};
-
-export const calcTotalRate = (
-  stakedBalance: bigint,
-  totalAvailble: number,
-  totalSupply: number,
-  inputValue: string
-): number => {
-  return Math.round(
-    fromWei(
-      (Number(stakedBalance) * totalAvailble) / totalSupply + Number(inputValue)
-    )
-  );
+  const days = Math.round((Number(timeStamp) - currentStamp) / oneDay);
+  if (days > 0) {
+    return days;
+  } else return 0;
 };
 
 export const toFixedDigits = (value: number): string => {
