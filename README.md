@@ -1,7 +1,7 @@
 ## Overview
 
 Welcome to StarRunner Token staking! This decentralized application allows you to interact with the StarRunner Token smart contract, using a seamless and user-friendly interface for managing your tokens. This DApp enables users to connect their wallets, stake StarRunner tokens, withdraw staked balances, and claim rewards.
-This application was built with HTML, CSS, Sass, React and Vite.
+This application was built with TypeScript, Sass, React and Vite.
 
 ## Usage
 
