@@ -1,5 +1,5 @@
-import { FC } from "react";
 import s from "./Prompt.module.scss";
+import { FC } from "react";
 import { PromptProps } from "../../constants/types";
 
 const balanceString = "Staking rewards get allocated on this sum";

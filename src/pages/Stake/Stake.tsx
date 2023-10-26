@@ -18,17 +18,19 @@ import {
 const { VITE_STAKE_ADDRESS } = import.meta.env;
 
 export const Stake = () => {
+  const { address } = useAccount();
+
   const context = useAppContext();
   const struBalance = context?.struBalance;
   const payload = context?.payload ? context?.payload : 0n;
   const totalRate = useGetTotalRate();
-
-  const { address } = useAccount();
   const allowance = useCheckAllowance(String(address));
+
   const { writeApprove, apprWriteLoading, apprData } = useApproveStaking();
   const { writeStake, stakeWriteLoading, stakeData } = useStakeToken();
   const { apprLoading } = useWaitForApprove(apprData, writeStake, payload);
   const { stakeLoading } = useWaitForStake(stakeData);
+
   const isLoading = apprWriteLoading || stakeWriteLoading;
 
   useEffect(() => {

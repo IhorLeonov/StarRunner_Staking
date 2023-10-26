@@ -4,6 +4,28 @@
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
+
+  background: radial-gradient(
+    650px,
+    var(--color-accent) 20%,
+    var(--color-background) 80%
+  );
+
+  @media screen and (min-width: $tablet) {
+    background: radial-gradient(
+      900px,
+      var(--color-accent) 20%,
+      var(--color-background) 80%
+    );
+  }
+
+  @media screen and (min-width: $desktop) {
+    background: radial-gradient(
+      1150px,
+      var(--color-accent) 20%,
+      var(--color-background) 80%
+    );
+  }
 }
 
 *,
@@ -20,30 +42,30 @@ body {
   font-size: var(--font-size--body-mob);
   letter-spacing: -0.28px;
 
-  background: radial-gradient(
-    650px,
-    var(--color-accent) 20%,
-    var(--color-background) 80%
-  );
+  // background: radial-gradient(
+  //   650px,
+  //   var(--color-accent) 20%,
+  //   var(--color-background) 80%
+  // );
 
   @media screen and (min-width: $tablet) {
     font-size: var(--font-size--body-tab);
     letter-spacing: -0.32px;
 
-    background: radial-gradient(
-      900px,
-      var(--color-accent) 20%,
-      var(--color-background) 80%
-    );
+    // background: radial-gradient(
+    //   900px,
+    //   var(--color-accent) 20%,
+    //   var(--color-background) 80%
+    // );
   }
 
-  @media screen and (min-width: $desktop) {
-    background: radial-gradient(
-      1150px,
-      var(--color-accent) 20%,
-      var(--color-background) 80%
-    );
-  }
+  // @media screen and (min-width: $desktop) {
+  //   background: radial-gradient(
+  //     1150px,
+  //     var(--color-accent) 20%,
+  //     var(--color-background) 80%
+  //   );
+  // }
 }
 
 button {

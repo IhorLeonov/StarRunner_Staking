@@ -19,7 +19,7 @@ export const Withdraw = () => {
   const stakedBalance = context?.stakedBalance;
   const rewards = context?.rewards;
 
-  const formattedStakedBalance = stakedBalance
+  const formatStakedBalance = stakedBalance
     ? toFixedDigits(Number(formatEther(stakedBalance)))
     : "";
 
@@ -55,9 +55,7 @@ export const Withdraw = () => {
       </div>
       <TransactionForm
         handleSubmit={handleSubmit}
-        balance={
-          formattedStakedBalance !== undefined ? formattedStakedBalance : ""
-        }
+        balance={formatStakedBalance !== undefined ? formatStakedBalance : ""}
       />
       <div className={styles.withdrow_buttons_box}>
         <SubmitButton

@@ -13,7 +13,6 @@ export const useGetSTRUBalance = (address: string) => {
     args: [`${address}`],
     watch: true,
   });
-  // return Number(data);
   return data;
 };
 
