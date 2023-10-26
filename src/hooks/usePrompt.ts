@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+// import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
-// const body = document.querySelector("body") as HTMLBodyElement;
-const main = document.querySelector("main") as HTMLBodyElement;
-const header = document.querySelector("header") as HTMLBodyElement;
+const body = document.querySelector("body") as HTMLBodyElement;
 
 export const usePrompt = () => {
   const [promptName, setPromptName] = useState<string | null>(null);
@@ -12,15 +10,16 @@ export const usePrompt = () => {
   const handleShowPrompt = (name: string) => {
     setPromptName(name);
     setPromptClass(`${name}_prompt`);
-    disableBodyScroll(main);
-    disableBodyScroll(header);
+    // disableBodyScroll(body);
+
+    body.style.overflowY = "hidden";
   };
 
   const handleHidePrompt = () => {
     setPromptName(null);
     setPromptClass(null);
-    enableBodyScroll(main);
-    enableBodyScroll(header);
+    // enableBodyScroll(body);
+    body.style.overflowY = "scroll";
   };
 
   return {
