@@ -2,10 +2,10 @@
 
 .prompt {
   position: absolute;
-
   top: 0;
   z-index: 10;
 
+  text-align: left;
   color: black;
   font-size: 14px;
   line-height: 1.14;
@@ -19,11 +19,11 @@
 
     font-family: var(--font-family--roboto-mono);
     border-radius: 8px 8px 0px 0px;
-    transform: translateY(calc(100vh + 275px + 8px));
+    // transform: translateY(calc(100vh + 275px + 8px));
+    transform: translateY(calc(100vh));
 
     &_title {
       margin-bottom: 16px;
-
       text-align: center;
       font-size: 16px;
       font-family: var(--font-family--roboto-mono-bold);
@@ -68,4 +68,4 @@
   }
 }
 
-// классы под разные сообщения находятся в sass/base/common
+// классы под разные tooltips находятся в sass/base/common

@@ -32,8 +32,8 @@
     animation-fill-mode: forwards;
   }
   @media screen and (min-width: $desktop) {
-    width: 360px;
-    left: -176px;
+    width: 380px;
+    left: -186px;
 
     animation: expand-bounce 300ms;
     animation-fill-mode: forwards;
@@ -46,7 +46,7 @@
   }
   @media screen and (min-width: $desktop) {
     width: 176px;
-    text-align: center;
+    text-align: center !important;
     left: -84px;
     animation: expand-bounce 300ms;
     animation-fill-mode: forwards;

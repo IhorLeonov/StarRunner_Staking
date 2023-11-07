@@ -9,8 +9,12 @@ const aprSecondString =
 const rewardsString = "Rewards get allocated every second";
 
 export const Prompt: FC<PromptProps> = ({ promptName, promptClass }) => {
+  // const prompt = document.getElementById("prompt");
+  // const rect = prompt?.getBoundingClientRect();
+  // console.log(rect);
+
   return (
-    <div className={s.prompt + " " + promptClass}>
+    <div id="prompt" className={s.prompt + " " + promptClass}>
       <h3 className={s.prompt_title}>{promptName}</h3>
       <p>
         <span>
@@ -28,16 +32,7 @@ export const Prompt: FC<PromptProps> = ({ promptName, promptClass }) => {
           })()}
         </span>
         <br />
-        <span>
-          {(() => {
-            switch (promptName) {
-              case "apr":
-                return aprSecondString;
-              default:
-                return;
-            }
-          })()}
-        </span>
+        <span>{promptName === "apr" && aprSecondString}</span>
       </p>
     </div>
   );
